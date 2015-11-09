@@ -39,14 +39,11 @@ public class BlobHandlerServiceImpl implements BlobHandlerService{
 	}
 
 	@Override
-	public List<Image> getImages() {
-		int limit=20;
+	public List<Image> getImages(int limit, Date minDate, Date maxDate) {
+		
 		Query<Image> query = ofy().load().type(Image.class)
 				.order("-" + Image.CREATED_AT)
 				.limit(limit);
-
-		Date minDate=null;
-		Date maxDate=null;
 		
 		if (minDate != null) {
 			// the query is immutable the assignment is important
