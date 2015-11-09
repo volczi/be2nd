@@ -1,4 +1,4 @@
-package com.volczi.be2nd;
+package com.volczi.be2nd.forum;
 
 /**
  * Contains the client IDs and scopes for allowed clients consuming the APIs.

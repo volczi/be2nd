@@ -1,4 +1,4 @@
-package com.volczi.be2nd;
+package com.volczi.be2nd.forum;
 
 import lombok.Data;
 
