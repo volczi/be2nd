@@ -18,6 +18,11 @@
 			controller: 'MessageController',
 			controllerAs: 'vm'
 		  }).
+		  when('/file_upload', {
+				templateUrl: 'app/fileUploader/index.jsp',
+				controller: 'MessageController',
+				controllerAs: 'vm'
+			  }).
 		  otherwise({
 			redirectTo: '/'
 		  });
