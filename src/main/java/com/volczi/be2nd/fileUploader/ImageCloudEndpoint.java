@@ -17,9 +17,12 @@ import com.google.api.server.spi.config.Nullable;
 import com.google.api.server.spi.response.NotFoundException;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.users.User;
+import com.google.inject.Guice;
+import com.google.inject.Injector;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
+import com.volczi.be2nd.services.BlobHandlerService;
 
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
@@ -37,12 +40,25 @@ import lombok.extern.slf4j.Slf4j;
 		description = "Api to manage images.",
 		authLevel = AuthLevel.REQUIRED)
 public class ImageCloudEndpoint {
-    private BlobHandlerService blobHandlerService;
+//    private BlobHandlerService blobHandlerService;
     
-    @Inject
-    public ImageCloudEndpoint(BlobHandlerService blobHandlerService) {
-        this.blobHandlerService = blobHandlerService;
-    }
+    
+//  constructor based injector
+//    @Inject
+//    public ImageCloudEndpoint(BlobHandlerService blobHandlerService) {
+//        this.blobHandlerService = blobHandlerService;
+//    }
+    
+//    //setter method injector
+//    @Inject
+//    public void setService(BlobHandlerService svc) {
+//        this.blobHandlerService=svc;
+//    }
+	
+	
+    Injector injector = Guice.createInjector(new AppInjector());        
+    
+    BlobHandlerService blobHandlerService = injector.getInstance(BlobHandlerService.class);
 
 	/**
 	 * You need to register the entity classes before you use them.
@@ -52,16 +68,17 @@ public class ImageCloudEndpoint {
 	}
 
 
-	@ApiMethod(path="image/{image}")
+	@ApiMethod(path="image")
 	public List<Image> getImages(
 			@Nullable @Named("limit") @DefaultValue("10") int limit,
 			@Nullable @Named("minDate") Date minDate,
 			@Nullable @Named("maxDate") Date maxDate)
 					throws ServiceException {
 	return blobHandlerService.getImages(limit, minDate, maxDate);
+//		return null;
 	}
 
-	@ApiMethod(path="topic/{topic}")
+	@ApiMethod(path="image/{blobKey}")
 	public void createImage(
 			@Named("blobKey") String blobKey,
 			User user) throws ServiceException {

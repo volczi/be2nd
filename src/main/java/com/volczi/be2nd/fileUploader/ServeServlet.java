@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.blobstore.BlobKey;
 import com.google.appengine.api.blobstore.BlobstoreService;
 import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.volczi.be2nd.services.BlobHandlerService;
+import com.volczi.be2nd.services.BlobHandlerServiceImpl;
 
 public class ServeServlet extends HttpServlet {
     private BlobstoreService blobstoreService = BlobstoreServiceFactory.getBlobstoreService();

@@ -1,4 +1,4 @@
-package com.volczi.be2nd.fileUploader;
+package com.volczi.be2nd.services;
 
 import static com.googlecode.objectify.ObjectifyService.ofy;
 
@@ -11,6 +11,7 @@ import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.cmd.Query;
+import com.volczi.be2nd.fileUploader.Image;
 import com.volczi.be2nd.forum.Message;
 import com.volczi.be2nd.forum.Topic;
 
