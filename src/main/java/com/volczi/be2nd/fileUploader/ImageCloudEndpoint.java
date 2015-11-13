@@ -27,8 +27,8 @@ import com.volczi.be2nd.services.BlobHandlerService;
 import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Api(
-		name = "image", 
-		resource = "image", 
+		name = "imageApi", 
+		resource = "imageApi", 
 		version = "v1", 
 		scopes = { Constants.EMAIL_SCOPE }, 
 		clientIds = {
@@ -77,7 +77,8 @@ public class ImageCloudEndpoint {
 	return blobHandlerService.getImages(limit, minDate, maxDate);
 //		return null;
 	}
-
+	
+	
 	@ApiMethod(path="image/{blobKey}")
 	public void createImage(
 			@Named("blobKey") String blobKey,

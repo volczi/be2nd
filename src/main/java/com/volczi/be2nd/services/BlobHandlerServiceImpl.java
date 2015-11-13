@@ -6,6 +6,10 @@ import java.util.Date;
 import java.util.List;
 
 import com.google.appengine.api.blobstore.BlobKey;
+import com.google.appengine.api.blobstore.BlobstoreService;
+import com.google.appengine.api.blobstore.BlobstoreServiceFactory;
+import com.google.appengine.api.images.ImagesServiceFactory;
+import com.google.appengine.api.images.ImagesService;
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
 import com.googlecode.objectify.Key;
@@ -17,7 +21,7 @@ import com.volczi.be2nd.forum.Topic;
 
 public class BlobHandlerServiceImpl implements BlobHandlerService{
 	private UserService userService = UserServiceFactory.getUserService();
-	
+	private ImagesService imagesService = ImagesServiceFactory.getImagesService();
 	static {
 		ObjectifyService.register(Image.class);
 	}
@@ -33,7 +37,7 @@ public class BlobHandlerServiceImpl implements BlobHandlerService{
 		else {
 			image.setAuthor("volczi");
 		}
-
+		image.setUrl(imagesService.getServingUrl(key));
 		ofy().save().entity(image).now();
 		return image;
 		

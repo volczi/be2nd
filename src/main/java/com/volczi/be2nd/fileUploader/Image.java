@@ -37,5 +37,6 @@ public class Image {
 	private String author;
 	private String content;
 	private String blobKey;
+	private String url;
 
 }
